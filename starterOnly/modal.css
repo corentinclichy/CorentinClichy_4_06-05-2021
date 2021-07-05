@@ -33,11 +33,15 @@ p {
 
 img {
   padding-right: 1rem;
+  padding-left: 0.8rem;
 }
 
 .topnav {
   overflow: hidden;
   margin: 3.5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .header-logo {
   float: left;
@@ -71,6 +75,7 @@ img {
 
 .topnav .icon {
   display: none;
+  color: #ff0000;
 }
 
 @media screen and (max-width: 1140px) {
@@ -120,6 +125,15 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    padding-left: 1vw;
+    padding-right: 1vw;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
 }
 
 .modal-btn {
