@@ -144,7 +144,7 @@ export default class FormValidator {
         field.forEach((elem) => {
           if (elem.checked) {
             almostOneIsChecked = true;
-            checkedElemValue = elem.value;
+            checkedElemValue = elem;
           }
         });
 
@@ -170,13 +170,8 @@ export default class FormValidator {
           formDataElement.setAttribute("data-error-visible", true);
         }
         break;
-      case "event":
-        field.checked && console.log(field.checked);
-        break;
-
       default:
-        console.log("error: no such field in this form");
-        break;
+        return "error: no such field in this form";
     }
   };
 }

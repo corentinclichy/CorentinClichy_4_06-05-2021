@@ -1,16 +1,7 @@
 import FormValidator from "./module/validator.js";
 
-///// Assign function to window object to avoid module scoping
-window.editNav = function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-};
-
 /////////////////////////////////////////////////////////////////// DOM ELEMENTS
+const body = document.querySelector("body");
 const modalbg = document.querySelector(".bground");
 const content = document.querySelectorAll(".content")[0];
 const formValid = document.querySelector(".form-valid");
@@ -34,11 +25,44 @@ const fields = [
 const validator = new FormValidator(signUpForm, fields);
 validator.initialize();
 
-/////////////////////////////////////////////////////////////// EVENTS LISTENERS
+function launchModal() {
+  // adding specific classes to bgground et content to display them
+  body.classList.add("modal-open");
+  modalbg.classList.add("bground--show");
+  content.classList.add("content--show");
+}
+function closeModal() {
+  // removing specific classes to bgground et content to display them
+  body.classList.remove("modal-open");
+  content.classList.remove("content--show");
+  modalbg.classList.remove("bground--show");
+}
+function resetModal() {
+  // reset all the input + reset style (show/no-show)
+  signUpForm.style.opacity = 1;
+  formValid.style.display = "none";
+  formInputs.forEach((input) => {
+    if (input.type !== "submit") {
+      input.type !== "radio" && (input.value = "");
+    }
 
-////////////////////////////// CLOSE/OPEN RESPONSIVE MENU
+    input.checked = false;
+    input.name === "term" && (input.checked = true);
+  });
+  formDatas.forEach((formData) => {
+    formData.setAttribute("data-error-visible", false);
+    formData.setAttribute("data-error", "");
+  });
+}
 
-////////////////////////////// CLOSE/OPEN MODAL
+/**
+ *
+ * EVENT LISTENER
+ *
+ *
+ */
+
+// Open/closeModal
 document.addEventListener("click", (e) => {
   if (e.target.matches(".modal-btn")) {
     //Case if user click on any element with classes .modal-btn
@@ -55,35 +79,9 @@ document.addEventListener("click", (e) => {
   }
 });
 
-function launchModal() {
-  // adding specific classes to bgground et content to display them
-  modalbg.classList.add("bground--show");
-  content.classList.add("content--show");
-}
-function closeModal() {
-  // removing specific classes to bgground et content to display them
-  content.classList.remove("content--show");
-  modalbg.classList.remove("bground--show");
-}
-function resetModal() {
-  // reset all the input + reset style (show/no-show)
-  signUpForm.style.opacity = 1;
-  formValid.style.display = "none";
-  formInputs.forEach((input) => {
-    input.type != "submit" && (input.value = "");
-    input.checked = false;
-    input.name === "term" && (input.checked = true);
-  });
-  formDatas.forEach((formData) => {
-    formData.setAttribute("data-error-visible", false);
-    formData.setAttribute("data-error", "");
-  });
-}
-
-////////////////////////////// SUBMITFORM
-signUpForm.addEventListener("submit", (e) => {
-  let error = isError(formDatas);
-
+//SUBMITFORM
+signUpForm.addEventListener("submit", () => {
+  const error = isError(formDatas);
   if (!error) {
     //Excute specific code only if no error
 

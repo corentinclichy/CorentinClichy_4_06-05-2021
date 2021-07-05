@@ -21,6 +21,11 @@ body {
   margin: 0 auto;
 }
 
+body .modal-open {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
 p {
   margin-bottom: 0;
   padding: 0.5vw;
@@ -68,7 +73,7 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1140px) {
   .topnav a {
     display: none;
   }
@@ -78,7 +83,7 @@ img {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1140px) {
   .topnav.responsive {
     position: relative;
   }
@@ -101,7 +106,7 @@ img {
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
+    margin-top: -0px;
   }
 }
 
@@ -179,6 +184,7 @@ main {
 
 .content {
   margin: 5% auto;
+  margin-top: 80px;
   width: 100%;
   max-width: 500px;
   transform: translateY(-150px);
@@ -460,7 +466,6 @@ input[data-error]::after {
   color: #fff;
   position: relative;
   text-align: left;
-  min-width: 424px;
 }
 .hero-content::after {
   content: "";
@@ -535,7 +540,7 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 4rem;
     white-space: normal;
   }
   .hero-text {
