@@ -117,7 +117,7 @@ export default class FormValidator {
         } else if (today <= inputValue) {
           formDataElement.setAttribute(
             "data-error",
-            "Votre date de naissance ne peut être supérieur à la date du jour"
+            "Votre date de naissance ne peut être supérieure à la date du jour"
           );
           formDataElement.setAttribute("data-error-visible", true);
         } else {
